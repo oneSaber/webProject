@@ -6,7 +6,6 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 
 @main_blueprint.route("/index")
-@login_required
 def index():
     return "hello"
 
