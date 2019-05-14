@@ -85,6 +85,44 @@ def get_course():
             return jsonify({'data': "没有数据"}), statue
 
 
+# 改变course 的status, 审核通过课程0->1 or 课程审核不通过或者不可选0->2 or 1->2
+@course.route("/change_course_status", methods=['POST'])
+@login_required
+def change_course_status():
+    request_data = request.json
+    if check_user_role("Admin"):
+        try:
+            course = Course.query.filter_by(id=request_data['course_id']).first()
+            orign_status = request_data['orign_status']  # 做同步验证用
+            aim_status = request_data['aim_status']  # 目标状态
+            if orign_status == course.course_status and (orign_status, aim_status) in [(0,1),(0,2),(1,2)]:
+                course.course_status = aim_status
+                db.session.add(course)
+                db.session.commit()
+                return jsonify({'msg':'修改成功'}), 200
+            else:
+                return jsonify({'msg': '参数错误'}), 400
+        except Exception as e:
+            print(e)
+            return jsonify({'msg': '参数错误'}), 400
+    else:
+        return jsonify({'msg':'没有权限'}), 401
 
 
-
+# 增加course_type, /course/add_course_type, user_role is teacher and admin
+@course.route("/add_course_type", methods=['POST'])
+@login_required
+def add_course_type():
+    request_data = request.json
+    if check_user_role("Teacher") or check_user_role("Admin"):
+        type_name = request_data.get("type_name")
+        parent_type_id = request_data.get("parent_type_id", None)
+        new_course_type = CourseType(type_name=type_name,parent_type_id=parent_type_id)
+        try:
+            db.session.add(new_course_type)
+            db.session.commit()
+            return jsonify({'msg':"插入新的课程类型成功"})
+        except Exception as e:
+            return jsonify({'msg':"插入课程类型失败"}), 400
+    else:
+        return jsonify({'msg': '用户权限不对'}), 401

@@ -97,8 +97,6 @@ class Course(db.Model):
         return course
 
 
-
-
 class CourseType(db.Model):
     __tablename__ = "coursetypies"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c0560c9-fe6d-4ef2-aacf-13b37b14f08c" name="Default Changelist" comment="" />
+    <list default="true" id="7c0560c9-fe6d-4ef2-aacf-13b37b14f08c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/Course/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Model.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/Model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/main/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Doc/api1.0.md" beforeDir="false" afterPath="$PROJECT_DIR$/Doc/api1.0.md" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/App/Model.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="-76">
+                    <caret line="92" column="46" lean-forward="true" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/App/main/views.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="681">
+                    <caret line="135" column="49" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="49" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/App/Course/views.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="700">
+                    <caret line="127" column="40" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="40" />
+                    <folding>
+                      <element signature="e#0#52#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/main/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1406">
-              <caret line="107" column="62" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/Model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,13 +97,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/App/Course/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/Doc/api1.0.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="614">
+                <caret line="214" column="26" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="26" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -91,6 +117,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -103,18 +132,20 @@
         <option value="$PROJECT_DIR$/App/__init__.py" />
         <option value="$PROJECT_DIR$/Config.py" />
         <option value="$PROJECT_DIR$/App/Course/__init__.py" />
-        <option value="$PROJECT_DIR$/App/Course/views.py" />
         <option value="$PROJECT_DIR$/App/Model.py" />
+        <option value="$PROJECT_DIR$/App/Course/views.py" />
         <option value="$PROJECT_DIR$/App/main/views.py" />
+        <option value="$PROJECT_DIR$/Doc/api1.0.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1929" />
-    <option name="y" value="351" />
+    <option name="x" value="575" />
+    <option name="y" value="206" />
     <option name="width" value="980" />
     <option name="height" value="1090" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -127,6 +158,28 @@
               <item name="webProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="webProject" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="webProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webProject" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webProject" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="Course" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webProject" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webProject" type="462c0819:PsiDirectoryNode" />
+              <item name="Doc" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -135,7 +188,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -211,11 +266,13 @@
       <workItem from="1557316416233" duration="9131000" />
       <workItem from="1557400515046" duration="2132000" />
       <workItem from="1557636731921" duration="3106000" />
+      <workItem from="1557652254149" duration="6261000" />
+      <workItem from="1557840514662" duration="2506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42455000" />
+    <option name="totallyTimeSpent" value="51222000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -227,9 +284,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="353" width="1550" height="878" extended-state="6" />
+    <frame x="-7" y="-7" width="2062" height="1166" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17336011" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13160518" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -243,7 +301,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50049853" side_tool="true" weight="0.23314066" />
-      <window_info anchor="bottom" x="21" y="455" width="2006" height="242" id="Terminal" order="11" sideWeight="0.4995015" weight="0.32133332" />
+      <window_info anchor="bottom" x="21" y="455" width="2006" height="242" id="Terminal" order="11" sideWeight="0.4995015" visible="true" weight="0.32080925" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -319,13 +377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/main/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -340,30 +391,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Model.py">
+    <entry file="file://$PROJECT_DIR$/App/main/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="95">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1406">
-          <caret line="107" column="62" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="681">
+          <caret line="135" column="49" selection-start-line="135" selection-start-column="23" selection-end-line="135" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-76">
+          <caret line="92" column="46" lean-forward="true" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/Course/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+        <state relative-caret-position="700">
+          <caret line="127" column="40" selection-start-line="127" selection-start-column="23" selection-end-line="127" selection-end-column="40" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Doc/api1.0.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="614">
+            <caret line="214" column="26" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
