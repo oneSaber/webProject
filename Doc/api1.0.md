@@ -185,7 +185,7 @@ method = GET
     cost: 购买该课程的花费
 
 return:
-    
+
     {'msg':'选课成功'}, 200
     {'msg':'课程当前不存在'}, 404
     {'msg':'课程目前不可选'}, 400
@@ -202,14 +202,78 @@ url: /course/add_course/type
 method = POST
 
 传入参数：
-    
+
     {
         type_name:
         parent_type_id:     如果添加的是一级分类，则没有这一项，如果是某个分类下面的子分类，这一项是该分类的id
     }
 
 return:
-    
+
     {'msg':"插入新的课程类型成功"}, 200
     {'msg':"插入课程类型失败"}, 400
     {'msg': '用户权限不对'}, 401
+
+## my_schedule
+
+描述: 获得学生已经选择的课程信息，课程信息同course, 只能在登陆状态下查看
+
+url: /main/my_schedule
+
+method = GET
+
+return:
+
+    {msg:  [
+        {
+            'course_id': self.id,               // 课程id
+            'course_name': self.course_name,    // 课程名
+            'course_status': self.course_status,    // 课程的状态码
+            'course_begin_date': self.course_begin_date,    // 开始上课的日期
+            'course_time': self.course_time,    // 上课时间
+            'course_last_time': self.course_last_time,  // 一节课持续时间
+            'course_interval': self.course_interval,    // 课程间隔时间
+            'course_total_times': self.course_total_times, // 总课程数
+            'course_had_finish': self.number_had_finish, // 已经完成的课程数
+            'course_price': self.price,
+            'next_course':  // 下一节课开始的日期
+            'teacher': {
+                    'id': self.id,
+                    'account': self.account,
+                    'email': self.email,
+                    'name': self.name,
+                    'address': self.address
+                    }     // 教师的信息
+            'type': // 课程类型
+        }
+        ]
+    }, 200
+
+## get_course_type
+
+描述：获得课程类型的信息
+
+url: /course/get_course_type?parent_type_id=
+
+method = GET
+
+参数说明：
+
+    0： 获得所有父类型的课程类型
+    某个具体的课程类型id，获取该课程类型的所有子类型
+
+return：
+
+    {
+        "msg":[
+            {
+                "id":  该课程类型的id,
+                "type_name": 该课程类型的名称,
+                "parent_type" : {
+                    "id":
+                    "parent_type"
+                    # 递归，直到最顶上的父类型，如果没有父类型，则没有这一项
+                }
+            }
+        ]
+    }

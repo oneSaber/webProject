@@ -145,4 +145,4 @@ def my_schedule():
         effective_courses = [effective_course.dict() for effective_course in
                              Course.query.filter(Course.id.in_(effective_course_ids)).all()]
         return make_response(json.dumps({'msg': effective_courses},cls = CJsonEncoder))
-
+    
