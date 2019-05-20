@@ -1,8 +1,17 @@
 from flask_login import current_user, login_required
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from . import course_blueprint as course
 from App.Model import *
 from datetime import datetime
+import json
+
+
+class CJsonEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.strftime('%Y-%m-%d %H:%M:%S')
+        else:
+            return json.JSONEncoder.default(self, obj)
 
 
 def check_user_role(role_name):
@@ -64,7 +73,7 @@ def get_course():
             statue = 404
         else:
             msg = [res.dict() for res in result.all()]
-        return jsonify({'data', msg}), statue
+        return
     if request.method == "POST":
         post_data = request.json
         keywords = post_data.get('keywords', [])
@@ -74,13 +83,13 @@ def get_course():
             if keyword == "course_id":
                 res = res.filter_by(id=query_word['course_id'])
                 if res.count() == 1:
-                    return jsonify({'data': res.first().dict()}), statue
+                    return make_response(json.dumps({'msg': res.dict()}, cls=CJsonEncoder), statue)
             if keyword == "course_name":
                 res = res.filter_by(course_name=query_word['course_name'])
             if keyword == "course_type_id":
                 res = res.filter_by(course_type_id=query_word['course_type_id'])
         if res.count() >0 :
-            return jsonify({'data': [res.first().dict()]}), statue
+            return make_response(json.dumps({'msg':[re.dict() for re in res.all()]},cls = CJsonEncoder),statue)
         else:
             return jsonify({'data': "没有数据"}), statue
 
@@ -126,3 +135,17 @@ def add_course_type():
             return jsonify({'msg':"插入课程类型失败"}), 400
     else:
         return jsonify({'msg': '用户权限不对'}), 401
+
+# 获取course_type信息,/course/get_course_type?parent_type_id=?
+# 0 所有的父课程类型
+# 某个父类型的id ，该类型下的所有子类型
+@course.route("/get_course_type", methods=['GET'])
+@login_required
+def get_course_type():
+    parent_id = request.args.get("parent_type_id", 0)
+    all_type = CourseType.query.filter_by(parent_type_id=parent_id)
+    if all_type.count() >0:
+        types_result = [course_type.dict() for course_type in all_type]
+        return make_response(json.dumps({"msg": types_result},cls=CJsonEncoder))
+    else:
+        return jsonify({'msg': "no course type"}), 404

@@ -2,9 +2,12 @@ from flask_login import UserMixin, AnonymousUserMixin, LoginManager
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from flask import g, current_app
+import json
+from datetime import datetime
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+
 
 # 继承UserMixin 和 AnonymousUserMixin 来实现flask_login
 class User(UserMixin, AnonymousUserMixin):
@@ -53,7 +56,7 @@ class Course(db.Model):
     __tablename__ = "courses"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     course_name = db.Column(db.String(32), unique=True)
-    course_status = db.Column(db.Integer, default=0)  # 0 表示带审核 1 表示审核通过可选 2 表示不可选
+    course_status = db.Column(db.Integer, default=0)  # 0 表示待审核 1 表示审核通过可选 2 表示不可选
     course_begin_date = db.Column(db.DATETIME)  # 课程开始的日期
     course_time = db.Column(db.String(32))  # 课程上课的时间, 格式为h:min 24小时制
     course_last_time = db.Column(db.Integer)  # 一节课持续时间
@@ -70,7 +73,7 @@ class Course(db.Model):
             need_day = self.number_had_finish * self.course_interval
             next_day = self.course_begin_date + timedelta(days = need_day)
             return next_day
-        return None
+        return 0
 
     def dict(self):
         course = {
@@ -101,7 +104,7 @@ class CourseType(db.Model):
     __tablename__ = "coursetypies"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     type_name = db.Column(db.String(32), unique=True)
-    parent_type_id = db.Column(db.Integer, nullable=True)  # 父类型
+    parent_type_id = db.Column(db.Integer, default=0)  # 父类型
 
     def dict(self):
         re = {
@@ -114,7 +117,6 @@ class CourseType(db.Model):
             re['parent_type'] = parent_type
         else:
             return re
-
 
 
 class Comment(db.Model):
@@ -145,6 +147,20 @@ class ChooseCourse(db.Model):
     student_id = db.Column(db.Integer, nullable=False)
     course_id = db.Column(db.Integer, nullable=False)
     cost = db.Column(db.Float, nullable=False, default=0.0)
+    course_status = db.Column(db.Column, nullable=False, default=0)  # 0 表示此课程不可上, 1表示此课程可以上
+
+    def __init__(self, student_id, course_id, cost = 0):
+        self.student_id = student_id
+        self.course_id = course_id
+        self.cost = cost
+
+        course = Course.query.filter_by(id=course_id).first()
+        if course is None:
+            raise Exception("No this course")
+        if course.course_status == 1 and course.number_had_finish < course.course_total_times:
+            self.course_status = 1
+        else:
+            self.course_status = 0
 
 
 @login_manager.user_loader

@@ -3,7 +3,7 @@ from flask import request, make_response, current_app, jsonify
 import json
 from App.Model import db, Student, Teacher, Admin, Company, Course, ChooseCourse
 from flask_login import current_user, login_user, logout_user, login_required
-
+from App.Course.views import CJsonEncoder
 
 def check_user_role(role_name):
     return type(current_user).__name__ == role_name
@@ -121,16 +121,28 @@ def choose_course():
         # check course 
         aim_course = Course.query.filter_by(id=course_id).first()
         if aim_course is None:
-            return jsonify({'msg':'课程当前不存在'}), 404
+            return jsonify({'msg': '课程当前不存在'}), 404
         if aim_course.course_status != 1:
-            return jsonify({'msg':'课程目前不可选'}), 400
+            return jsonify({'msg': '课程目前不可选'}), 400
         new_choose_course = ChooseCourse(student_id=current_user.id, course_id=course_id,cost=cost)
         try:
             db.session.add(new_choose_course)
             db.session.commit()
-            return jsonify({'msg':'选课成功'}), 200
+            return jsonify({'msg': '选课成功'}), 200
         except Exception as e:
             print(e)
-            return jsonify({'msg':'选课失败'}),500
+            return jsonify({'msg': '选课失败'}),500
     else:
-        return jsonify({'msg':'身份不对，不能选课'}),401    
+        return jsonify({'msg': '身份不对，不能选课'}),401
+
+
+@main_blueprint.route("/my_schedule", methods=['GET'])
+@login_required
+def my_schedule():
+    if check_user_role("Student"):
+        all_schedule = ChooseCourse.query.filter_by(student_id=current_user.id)
+        effective_course_ids = [schedule.course_id for schedule in all_schedule.all() if schedule.course_status == 1]
+        effective_courses = [effective_course.dict() for effective_course in
+                             Course.query.filter(Course.id.in_(effective_course_ids)).all()]
+        return make_response(json.dumps({'msg': effective_courses},cls = CJsonEncoder))
+
