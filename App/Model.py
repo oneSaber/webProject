@@ -147,7 +147,7 @@ class ChooseCourse(db.Model):
     student_id = db.Column(db.Integer, nullable=False)
     course_id = db.Column(db.Integer, nullable=False)
     cost = db.Column(db.Float, nullable=False, default=0.0)
-    course_status = db.Column(db.Column, nullable=False, default=0)  # 0 表示此课程不可上, 1表示此课程可以上
+    course_status = db.Column(db.Integer, nullable=False, default=0)  # 0 表示此课程不可上, 1表示此课程可以上
 
     def __init__(self, student_id, course_id, cost = 0):
         self.student_id = student_id
