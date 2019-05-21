@@ -77,9 +77,9 @@ def login_contral(user, password):
         return json.dumps({'msg':"successful"})
 
 
-@main_blueprint.route("/login", methods=['GET'])
+@main_blueprint.route("/login", methods=['POST'])
 def login():
-    data = request.args
+    data = request.json
     account = data['account']
     password = data['password']
     role = data['role']   # student, teacher, admin or company
