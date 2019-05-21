@@ -1,6 +1,7 @@
 # API 1.0
 
 host = 39.105.64.7
+port =  5000
 
 ## index
 

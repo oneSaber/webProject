@@ -1,10 +1,14 @@
 from flask import Flask
 from Config import config
+from flask_cors import CORS
 
+cors = CORS()
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(config["development"])
+
+    cors.init_app(app)
 
     from .Model import db
     db.init_app(app)
