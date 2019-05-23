@@ -16,13 +16,16 @@ class User(UserMixin, AnonymousUserMixin):
     password = db.Column(db.String(300), unique=False)
     email = db.Column(db.String(120), unique=True)
     name = db.Column(db.String(30), unique=False)
+    role = db.Column(db.String(120))
 
+    def get_id(self):
+        return str(self.id)+"-"+self.role
 
 class Student(db.Model, User):
     __tablename__ = "students"
     address = db.Column(db.String(120))
     school = db.Column(db.String(120))
-    role = db.Column(db.String(120), default="Student")
+
 
 
 class Teacher(db.Model, User):
@@ -30,7 +33,6 @@ class Teacher(db.Model, User):
     __tablename__ = "teachers"
     address = db.Column(db.String(120))
     company_id = db.Column(db.Integer, nullable=True)
-    role = db.Column(db.String(120), default="Teacher")
 
     def dict(self):
         return {
@@ -44,7 +46,6 @@ class Teacher(db.Model, User):
 
 class Admin(db.Model, User):
     __tablename__ = "admin"
-    role = db.Column(db.String(120), default="Admin")
 
 
 class Company(db.Model):
@@ -96,10 +97,10 @@ class Course(db.Model):
             course['next_course'] = next_course
         teacher = Teacher.query.filter_by(id=self.teacher_id)
         if teacher.count() == 1:
-            course['teacher'] = teacher.dict()
+            course['teacher'] = teacher.first().dict()
         course_type = CourseType.query.filter_by(id=self.course_type_id)
         if course_type.count() == 1:
-            course['type'] = course_type.dict()
+            course['type'] = course_type.first().dict()
         return course
 
 
@@ -118,6 +119,7 @@ class CourseType(db.Model):
         if parent_type.count() == 1:
             parent_type = parent_type.first().dict()
             re['parent_type'] = parent_type
+            return re
         else:
             return re
 
@@ -169,22 +171,19 @@ class ChooseCourse(db.Model):
 @login_manager.user_loader
 def user_load(user_id):
     # user is student
-    user = Student.query.filter_by(id=user_id).first()
-    if user is not None:
+    print(user_id)
+    user_info = user_id.split("-")
+    user_id = int(user_info[0])
+    user_role = user_info[1]
+    if user_role == "Student":
+        user = Student.query.filter_by(id=user_id).first()
         return user
-    # user is teacher
-    user = Teacher.query.filter_by(id=user_id).first()
-    if user is not None:
+    if user_role == "Teacher":
+        user = Teacher.query.filter_by(id=user_id).first()
         return user
-    # user is admin
-    user = Admin.query.filter_by(id=user_id).first()
-    if user is not None:
+    if user_role == "Admin":
+        user = Admin.query.filter_by(id=user_id).first()
         return user
-    # user is company
-    user = Company.query.filter_by(id=user_id).first()
-    if user is not None:
-        return user
-
 
 class AnonymousUser(AnonymousUserMixin):
     def can(self):

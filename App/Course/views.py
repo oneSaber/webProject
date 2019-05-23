@@ -15,6 +15,8 @@ class CJsonEncoder(json.JSONEncoder):
 
 
 def check_user_role(role_name):
+    print(current_user)
+    print(role_name)
     return current_user.role == role_name
 
 
@@ -22,6 +24,7 @@ def check_user_role(role_name):
 @login_required
 def add_course():
     course_data = request.json
+    print(course_data)
     msg = ""
     statue = 200
     if check_user_role("Teacher"):
@@ -30,7 +33,7 @@ def add_course():
         try:
             # 得到参数的begin_date = yyyy/mm/dd
             begin_date_args = course_data['course_begin_date'].split("/")
-            begin_date = datetime(begin_date_args[0],begin_date_args[1],begin_date_args[2])
+            begin_date = datetime(int(begin_date_args[0]),int(begin_date_args[1]),int(begin_date_args[2]))
             new_course = Course(
                 course_name=course_data['course_name'],
                 course_begin_date=begin_date,
@@ -41,7 +44,9 @@ def add_course():
                 course_total_times=course_data['course_total_times'],
                 price=course_data['price'],
                 course_type_id=course_data['course_type_id']
+
             )
+
             db.session.add(new_course)
             db.session.commit()
             msg = "添加成功，等待审核"

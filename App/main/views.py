@@ -11,7 +11,8 @@ def check_user_role(role_name):
 
 @main_blueprint.route("/index")
 def index():
-    return "hello"
+    print(current_user)
+    return "ok"
 
 
 @main_blueprint.route("/register", methods=['POST'])
@@ -29,29 +30,35 @@ def register():
                 name=data.get("name"),
                 email=data.get("email"),
                 address=data.get("address"),
-                school=data.get("school")
+                school=data.get("school"),
+                role="Student"
             )
             db.session.add(new_student)
             db.session.commit()
+            return make_response(json.dumps({'msg': '注册成功'}))
         if data.get('type') == "teacher":
             new_teacher = Teacher(
                 account=data.get("account"),
                 password=data.get("password"),
                 name=data.get("name"),
                 email=data.get("email"),
-                address=data.get("address")
+                address=data.get("address"),
+                role="Teacher"
             )
             db.session.add(new_teacher)
             db.session.commit()
+            return make_response(json.dumps({'msg': '注册成功'}))
         if data.get("type") == "admin":
             new_admin = Admin(
                 account=data.get("account"),
                 password=data.get("password"),
                 name=data.get("name"),
                 email=data.get("email"),
+                role="Admin"
             )
             db.session.add(new_admin)
             db.session.commit()
+            return make_response(json.dumps({'msg': '注册成功'}))
         if data.get("type") == "company":
             new_company = Company(
                 account=data.get("account"),
@@ -60,12 +67,14 @@ def register():
             )
             db.session.add(new_company)
             db.session.commit()
+            return make_response(json.dumps({'msg': '注册成功'}))
+        return make_response(json.dumps({"msg":"参数错误"}))
     except Exception as e:
         print(e)
         db.session.rollback()
         print("register failure")
         return make_response(json.dumps({"msg":'注册参数存在错误'}), 400)
-    return make_response(json.dumps({'msg':'注册成功'}))
+
 
 
 def login_contral(user, password):
@@ -74,6 +83,7 @@ def login_contral(user, password):
         return make_response(json.dumps({'msg': 'no account'}), 401)
     if user.password == password:
         login_user(user, remember=True)
+        print(current_user)
         return json.dumps({'msg':"successful"})
 
 
