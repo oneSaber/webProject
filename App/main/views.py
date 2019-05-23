@@ -80,6 +80,8 @@ def login_contral(user, password):
 @main_blueprint.route("/login", methods=['POST'])
 def login():
     data = request.json
+    if data is None:
+        return jsonify({"msg":"没有收到任何数据"}), 400
     account = data['account']
     password = data['password']
     role = data['role']   # student, teacher, admin or company
