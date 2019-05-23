@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from App.Course.views import CJsonEncoder
 
 def check_user_role(role_name):
-    return type(current_user).__name__ == role_name
+    return current_user.role == role_name
 
 
 @main_blueprint.route("/index")

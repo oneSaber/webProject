@@ -1,8 +1,8 @@
-"""first migrate
+"""empty message
 
-Revision ID: b1cbd33e8152
+Revision ID: 85166332d83a
 Revises: 
-Create Date: 2019-05-03 15:55:11.795814
+Create Date: 2019-05-23 20:15:58.871785
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b1cbd33e8152'
+revision = '85166332d83a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('password', sa.String(length=300), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=True),
     sa.Column('name', sa.String(length=30), nullable=True),
+    sa.Column('role', sa.String(length=120), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('account'),
     sa.UniqueConstraint('email')
@@ -33,6 +34,7 @@ def upgrade():
     sa.Column('student_id', sa.Integer(), nullable=False),
     sa.Column('course_id', sa.Integer(), nullable=False),
     sa.Column('cost', sa.Float(), nullable=False),
+    sa.Column('course_status', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('comments',
@@ -55,13 +57,16 @@ def upgrade():
     op.create_table('courses',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('course_name', sa.String(length=32), nullable=True),
+    sa.Column('course_status', sa.Integer(), nullable=True),
     sa.Column('course_begin_date', sa.DATETIME(), nullable=True),
-    sa.Column('course_time', sa.TIME(), nullable=True),
+    sa.Column('course_time', sa.String(length=32), nullable=True),
     sa.Column('course_last_time', sa.Integer(), nullable=True),
     sa.Column('course_interval', sa.Integer(), nullable=True),
     sa.Column('course_total_times', sa.Integer(), nullable=True),
     sa.Column('number_had_finish', sa.Integer(), nullable=True),
     sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('teacher_id', sa.Integer(), nullable=False),
+    sa.Column('course_type_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('course_name')
     )
@@ -89,6 +94,7 @@ def upgrade():
     sa.Column('name', sa.String(length=30), nullable=True),
     sa.Column('address', sa.String(length=120), nullable=True),
     sa.Column('school', sa.String(length=120), nullable=True),
+    sa.Column('role', sa.String(length=120), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('account'),
     sa.UniqueConstraint('email')
@@ -101,6 +107,7 @@ def upgrade():
     sa.Column('name', sa.String(length=30), nullable=True),
     sa.Column('address', sa.String(length=120), nullable=True),
     sa.Column('company_id', sa.Integer(), nullable=True),
+    sa.Column('role', sa.String(length=120), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('account'),
     sa.UniqueConstraint('email')

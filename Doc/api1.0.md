@@ -198,7 +198,7 @@ return:
 
 描述: teacher 或者 admin 向数据库中添加课程分类，可以添加一级分类和二级分类（需要提供parent_type_id）
 
-url: /course/add_course/type
+url: /course/add_course_type
 
 method = POST
 

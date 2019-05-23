@@ -22,6 +22,7 @@ class Student(db.Model, User):
     __tablename__ = "students"
     address = db.Column(db.String(120))
     school = db.Column(db.String(120))
+    role = db.Column(db.String(120), default="Student")
 
 
 class Teacher(db.Model, User):
@@ -29,6 +30,7 @@ class Teacher(db.Model, User):
     __tablename__ = "teachers"
     address = db.Column(db.String(120))
     company_id = db.Column(db.Integer, nullable=True)
+    role = db.Column(db.String(120), default="Teacher")
 
     def dict(self):
         return {
@@ -42,6 +44,7 @@ class Teacher(db.Model, User):
 
 class Admin(db.Model, User):
     __tablename__ = "admin"
+    role = db.Column(db.String(120), default="Admin")
 
 
 class Company(db.Model):

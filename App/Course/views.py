@@ -15,7 +15,7 @@ class CJsonEncoder(json.JSONEncoder):
 
 
 def check_user_role(role_name):
-    return type(current_user).__name__ == role_name
+    return current_user.role == role_name
 
 
 @course.route("/add_course", methods=['POST'])
@@ -73,7 +73,7 @@ def get_course():
             statue = 404
         else:
             msg = [res.dict() for res in result.all()]
-        return
+        return make_response(json.dumps({'msg':msg},cls=CJsonEncoder),statue)
     if request.method == "POST":
         post_data = request.json
         keywords = post_data.get('keywords', [])
@@ -123,6 +123,7 @@ def change_course_status():
 @login_required
 def add_course_type():
     request_data = request.json
+    print(current_user.account)
     if check_user_role("Teacher") or check_user_role("Admin"):
         type_name = request_data.get("type_name")
         parent_type_id = request_data.get("parent_type_id", None)
